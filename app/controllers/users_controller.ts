@@ -44,7 +44,7 @@ export default class UsersController {
       user.password = request.input('password')
 
       await user.save()
-      return response.json({message: 'User created', code: 201})
+      return response.status(201).json({message: 'User created', user})
     } catch (error) {
       return response.status(400).send({ errors: error.messages });
     }
@@ -60,9 +60,9 @@ export default class UsersController {
       }
       user.merge(requestBody)
       await user.save()
-      return response.json({message: 'User actualizado', code: 200})
+      return response.status(201).json({ message: 'User updated', user })
     } catch (error) {
-      return response.status(404).send({ errors: error.messages });
+      return response.status(404).send({ message: 'User not updated' });
     }
   }
 
@@ -74,9 +74,9 @@ export default class UsersController {
       }
 
       await user.delete()
-      return response.json({message: 'User deleted', code: 202})
+      return response.status(202).json({message: 'User deleted'})
     } catch (error){
-      return response.status(404).send({ errors: error.messages });
+      return response.status(403).send({ errors: error.messages });
     }
   }
 
