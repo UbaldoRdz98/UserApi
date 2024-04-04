@@ -24,7 +24,7 @@ export default class UsersController {
 
   async getUserById({params, response}: HttpContext) {
     try {
-      const user = await User.query().where('id', params.id).first();
+      const user = await User.findBy('id', params.id);
       if (!user) {
         return response.status(404).send({ message: "User doesn't exist." });
       }
