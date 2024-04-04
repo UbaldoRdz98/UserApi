@@ -67,7 +67,7 @@ test.group('Users', () => {
      
     for (let index = 0; index < res.length; index++) {
       const element = res[index];
-      console.log(element.message)
+      console.log("  " + element.message)
     }
   })
 
